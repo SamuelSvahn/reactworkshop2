@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CrudDemo from './CrudDemo';
 
 const RouterDemo = () => {
 
     const Header = () => {
-        return(<nav className='nav nav-pills nav-fill bg-dark text-white'>
+        return(<nav className='nav bg-dark text-white'>
             <li className='nav-item'>
-                <Link className='nav-link' to="/" >Welcome</Link>
+                <Link className='nav-link  text-white' to="/" >React</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to="/home" >Home</Link>
@@ -15,11 +16,15 @@ const RouterDemo = () => {
                 <Link className='nav-link' to="/person" >Person</Link>
             </li>
             <li className='nav-item'>
-                <Link className='nav-link' to="/about" >About</Link>
+                <Link className='nav-link' to="/about" >AboutUs</Link>
+            </li>
+            <li className='nav-item'>
+                <Link className='nav-link' to="/crud" >Crud</Link>
             </li>
             <li className='nav-item'>
                 <Link className='nav-link' to="" >NotFound</Link>
             </li>
+            
             
 
 
@@ -61,6 +66,8 @@ const RouterDemo = () => {
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/person" component={Person}/>
                     <Route exact path="/about" component={About}/>
+                    <Route exact path="/crud" component={CrudDemo}/>
+
                     <Route exact path="" component={NotFound}/>
                 </Switch>
 
