@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CrudDemo from './CrudDemo';
+import PersonDetails from './CrudDemo';
+import { useForm } from 'react-hook-form';
 
 const RouterDemo = () => {
 
@@ -21,9 +23,7 @@ const RouterDemo = () => {
             <li className='nav-item'>
                 <Link className='nav-link' to="/crud" >Crud</Link>
             </li>
-            <li className='nav-item'>
-                <Link className='nav-link' to="" >NotFound</Link>
-            </li>
+            
             
             
 
@@ -67,6 +67,7 @@ const RouterDemo = () => {
                     <Route exact path="/person" component={Person}/>
                     <Route exact path="/about" component={About}/>
                     <Route exact path="/crud" component={CrudDemo}/>
+                    <Route path="/details/:id" component={PersonDetails} />
 
                     <Route exact path="" component={NotFound}/>
                 </Switch>
