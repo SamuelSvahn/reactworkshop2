@@ -7,28 +7,31 @@ import { useForm } from 'react-hook-form';
 const RouterDemo = () => {
 
     const Header = () => {
-        return(<nav className='nav bg-dark text-white'>
-            <li className='nav-item'>
-                <Link className='nav-link  text-white' to="/" >React</Link>
-            </li>
-            <li className='nav-item'>
-                <Link className='nav-link' to="/home" >Home</Link>
-            </li>
-            <li className='nav-item'>
-                <Link className='nav-link' to="/person" >Person</Link>
-            </li>
-            <li className='nav-item'>
-                <Link className='nav-link' to="/about" >AboutUs</Link>
-            </li>
-            <li className='nav-item'>
-                <Link className='nav-link' to="/crud" >Crud</Link>
-            </li>
-            
-            
-            
-
-
-
+        return(<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <div class="container-fluid">
+        <Link className='nav-link  text-white' to="/" >React</Link>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+              <Link className='nav-link' to="/home" >Home</Link>
+              </li>
+              <li class="nav-item">
+              <Link className='nav-link' to="/person" >Person</Link>
+              </li>
+              <li class="nav-item">
+              <Link className='nav-link' to="/about" >AboutUs</Link>
+              </li>
+              <li class="nav-item">
+              <Link className='nav-link' to="/crud" >Crud</Link>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
         </nav>
         );
 

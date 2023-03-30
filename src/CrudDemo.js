@@ -205,12 +205,12 @@ const CrudDemo = () => {
 
 
     return (<>
-        <h3>Sign up</h3>
+        <h3 className='mt-3'>Sign up</h3>
         <HookForm/>
         <br/>
         <hr/>
         <br/>
-        <h1>Person List</h1>
+        <h3>Person List</h3>
         <table className="table table-striped">
         <TableHeader />
         <TableRow list={people} />
