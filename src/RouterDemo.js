@@ -9,7 +9,7 @@ const RouterDemo = () => {
     const Header = () => {
         return(<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
         <div class="container-fluid">
-        <Link className='nav-link  text-white' to="/" >React</Link>
+        <Link className='nav-link  text-white' to="/" ><h3>React</h3></Link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
