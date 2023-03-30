@@ -142,14 +142,72 @@ const CrudDemo = () => {
           }
         };
 
+        const HookForm = () => {
+            const {register, handleSubmit, formState: {errors} } = useForm();
+        
+            const saveData = (data)=> {
+                axios.post(API_URL, data).then(response=>{
+                    setPeople(response.data);
+                })
+            }
+
+            const resetData = () =>{
+
+            }
+        
+            return (
+                <div className='container mt-3'>
+                    <form className='form-row' onSubmit={handleSubmit(saveData)}>
+                        <div className='mb-3'>
+                            <input type="text" {...register("firstName", {required: true, maxLength: 40})} className='form-group col-md-6' id="firstName" name="firstName" placeholder='Enter First Name...' />
+                           {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>First Name is Required!</span>)} 
+                           {errors.firstName && errors.firstName.type === "maxLength" && (<span className='text-danger'>Max Length is exceeded!</span>)} 
+                        
+                            <input type="text" {...register("lastName", {required: true, maxLength: 40})} className='form-group col-md-6' id="lastName" name="lastName" placeholder='Enter Last Name...' />
+                            {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Last Name is Required!</span>)} 
+                            {errors.lastName && errors.lastName.type === "maxLength" && (<span className='text-danger'>Max Length is exceeded!</span>)} 
+        
+                        </div>
+
+                        <div className='mb-3'>
+                            <input type="text" {...register("email", {required: true, maxLength: 40})} className='form-control' id="email" name="email" placeholder='Enter Email...' />
+                            {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email is Required!</span>)} 
+                            {errors.email && errors.email.type === "maxLength" && (<span className='text-danger'>Email Length is exceeded!</span>)} 
+        
+                        </div>
+
+                        <div className='mb-3'>
+                            <input type="text" {...register("title", {required: true, maxLength: 40})} className='form-control' id="title" name="title" placeholder='Enter Title...' />
+                            {errors.title && errors.title.type === "required" && (<span className='text-danger'>Title is Required!</span>)} 
+                            {errors.title && errors.title.type === "maxLength" && (<span className='text-danger'>Title Length is exceeded!</span>)} 
+        
+                        </div>
+                        <div className='mb-3'>
+                            <button type='submit' className='btn btn-success'>Add</button>
+                            <button type='button' className='btn btn-danger' onClick={resetData}>Reset</button>
+                        </div>
+                    
+                    </form>
+                    
+                </div>
+            );
+        
+        };
+
 
     return (<>
+        <h3>Sign up</h3>
+        <HookForm/>
+        <br/>
+        <hr/>
+        <br/>
         <h1>Person List</h1>
         <table className="table table-striped">
         <TableHeader />
         <TableRow list={people} />
         <PersonDetails people={people}/>
       </table>
+      
     </>
   );
 };
