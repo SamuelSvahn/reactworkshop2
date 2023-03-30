@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import AlertMessage from './AlertMessage';
 
 const CrudDemo = () => {
     const API_URL = "http://localhost:8080/api/v1/person"
     const [people, setPeople] = useState([]);
     const [showDetails, setShowDetails] = useState(false);
     const history = useHistory();
+    const [alert, setAlert] = useState({type: "", message: ""})
+
 
 
     // The get information from database to List
@@ -20,6 +23,10 @@ const CrudDemo = () => {
         })
 
     }, []);
+
+    
+
+
 
 
     const TableHeader = () =>{
@@ -156,17 +163,19 @@ const CrudDemo = () => {
             }
         
             return (
-                <div className='container mt-3'>
-                    <form className='form-row' onSubmit={handleSubmit(saveData)}>
-                        <div className='mb-3'>
-                            <input type="text" {...register("firstName", {required: true, maxLength: 40})} className='form-group col-md-6' id="firstName" name="firstName" placeholder='Enter First Name...' />
+                
+                    <form className='form-control mt-3 bg-light' onSubmit={handleSubmit(saveData)}>
+                        <div className='row mt-3'>
+                        <div className='col'>
+                            <input type="text" {...register("firstName", {required: true, maxLength: 40})} className='form-control' id="firstName" name="firstName" placeholder='Enter First Name...' />
                            {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>First Name is Required!</span>)} 
                            {errors.firstName && errors.firstName.type === "maxLength" && (<span className='text-danger'>Max Length is exceeded!</span>)} 
-                        
-                            <input type="text" {...register("lastName", {required: true, maxLength: 40})} className='form-group col-md-6' id="lastName" name="lastName" placeholder='Enter Last Name...' />
+                        </div>
+                        <div className='col mb-3'>
+                            <input type="text" {...register("lastName", {required: true, maxLength: 40})} className='form-control' id="lastName" name="lastName" placeholder='Enter Last Name...' />
                             {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Last Name is Required!</span>)} 
                             {errors.lastName && errors.lastName.type === "maxLength" && (<span className='text-danger'>Max Length is exceeded!</span>)} 
-        
+                        </div>
                         </div>
 
                         <div className='mb-3'>
@@ -184,12 +193,12 @@ const CrudDemo = () => {
                         </div>
                         <div className='mb-3'>
                             <button type='submit' className='btn btn-success'>Add</button>
-                            <button type='button' className='btn btn-danger' onClick={resetData}>Reset</button>
+                            <button type='button' className='btn btn-danger ms-1' onClick={resetData}>Reset</button>
                         </div>
                     
                     </form>
                     
-                </div>
+                
             );
         
         };

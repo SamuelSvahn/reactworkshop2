@@ -51,7 +51,10 @@ const RouterDemo = () => {
     }
 
     const NotFound = () =>{
-        return <h3>NotFound</h3>
+        return <div className='container'>
+        <h4>404 - ComponentNotFound</h4>
+
+    </div>
     }
 
 
