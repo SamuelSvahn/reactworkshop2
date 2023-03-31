@@ -13,7 +13,6 @@ const CrudDemo = () => {
     const [reload, setReload] = useState(false);
 
 
-    // The get information from database to List
 
     useEffect(()=>{
         axios.get(API_URL).then(response =>{
@@ -51,7 +50,7 @@ const CrudDemo = () => {
             setShowDetails(true);
         }
         
-        //todo
+        
         const deleteAction = () =>{
             axios.delete(API_URL + "/" + props.person.id).then(response =>{
                 setReload(!reload);
@@ -93,7 +92,7 @@ const CrudDemo = () => {
         
             return(<>
                 {showDetails && (
-                    <div className="card">
+                    <div className="card col-md-3">
                         <div className="card-header bg-info text-white">
                             Person Information
                         </div>
@@ -158,7 +157,7 @@ const CrudDemo = () => {
             const saveData = (data)=> {
                 axios.post(API_URL, data).then(response=>{
                     if(response.status === 201){setReload(!reload);}
-                    // todo: check if status was 201 - reload data
+                    
                     
                 })
             }
