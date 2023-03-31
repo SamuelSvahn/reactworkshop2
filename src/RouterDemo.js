@@ -7,25 +7,25 @@ import { useForm } from 'react-hook-form';
 const RouterDemo = () => {
 
     const Header = () => {
-        return(<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-        <div class="container-fluid">
+        return(<nav className="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <div className="container-fluid">
         <Link className='nav-link  text-white' to="/" ><h3>React</h3></Link>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
         
-          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ms-auto ">
-              <li class="nav-item">
+          <div className=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav ms-auto ">
+              <li className="nav-item">
               <Link className='nav-link' to="/home" >Home</Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link className='nav-link' to="/person" >Person</Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link className='nav-link' to="/about" >AboutUs</Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link className='nav-link' to="/crud" >Crud</Link>
               </li>
               

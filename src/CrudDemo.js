@@ -10,7 +10,7 @@ const CrudDemo = () => {
     const [showDetails, setShowDetails] = useState(false);
     const history = useHistory();
     const [alert, setAlert] = useState({type: "", message: ""})
-
+    const [reload, setReload] = useState(false);
 
 
     // The get information from database to List
@@ -18,11 +18,12 @@ const CrudDemo = () => {
     useEffect(()=>{
         axios.get(API_URL).then(response =>{
             if(response.status === 200){
+                console.log("RESPONSE:", response);
                 setPeople(response.data);
             }
         })
 
-    }, []);
+    }, [reload]);
 
     
 
@@ -46,16 +47,15 @@ const CrudDemo = () => {
     const TableAction = (props) =>{
 
         const detailsAction = ()=>{
-            history.push('/details/' + props.people.id)
+            history.push('/details/' + props.person.id)
             setShowDetails(true);
         }
         
         //todo
         const deleteAction = () =>{
-            axios.delete(API_URL + "/" + props.people.id).then(response =>{
-                setPeople("");
+            axios.delete(API_URL + "/" + props.person.id).then(response =>{
+                setReload(!reload);
             })
-
         }
 
         const editAction = () =>{
@@ -79,11 +79,14 @@ const CrudDemo = () => {
         
 
         useEffect(()=>{
-            axios.get(API_URL+"/"+params.id).then(response =>{
+            if(params.id){
+                axios.get(API_URL+"/"+params.id).then(response =>{
                 if(response.status === 200){
                     setPerson(response.data);
                 }
             })
+            }
+            
     
         }, []);
         
@@ -119,7 +122,7 @@ const CrudDemo = () => {
 
     const TableRow= (props) =>{
 
-        if(!props.list && props.list.length === 0){
+        if(props.list.length === 0){
             return (
                 <tbody>
                     <tr>
@@ -130,15 +133,15 @@ const CrudDemo = () => {
         }else { 
             return(
             <tbody> 
-                {props.list.map((people) => {
+                {props.list.map((person) => {
                 const row = (
-                    <tr key={people.id}>
-                      <td>{people.id}</td>
-                      <td>{people.firstName}{" "}{people.lastName}</td>
-                      <td>{people.email}</td>
+                    <tr key={person.id}>
+                      <td>{person.id}</td>
+                      <td>{person.firstName}{" "}{person.lastName}</td>
+                      <td>{person.email}</td>
                     
                       <td>
-                        <TableAction people={people} />
+                        <TableAction person={person} />
                       </td>
                     </tr>
                   );
@@ -154,7 +157,9 @@ const CrudDemo = () => {
         
             const saveData = (data)=> {
                 axios.post(API_URL, data).then(response=>{
-                    setPeople(response.data);
+                    if(response.status === 201){setReload(!reload);}
+                    // todo: check if status was 201 - reload data
+                    
                 })
             }
 
@@ -214,9 +219,8 @@ const CrudDemo = () => {
         <table className="table table-striped">
         <TableHeader />
         <TableRow list={people} />
-        <PersonDetails people={people}/>
       </table>
-      
+      <PersonDetails />
     </>
   );
 };
